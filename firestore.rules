@@ -1,0 +1,55 @@
+rules_version = '2';
+service cloud.firestore {
+  match /databases/{database}/documents {
+
+    // Helper function to verify authenticated user
+    function isAuthenticated() {
+      return request.auth != null;
+    }
+
+    // Helper to check user owns the document path
+    function isOwner(userId) {
+      return isAuthenticated() && request.auth.uid == userId;
+    }
+
+    // Users collection and subcollections
+    match /users/{userId} {
+      allow read, write: if isOwner(userId);
+
+      // 1. Leads Subcollection
+      match /leads/{leadId} {
+        allow read, write: if isOwner(userId);
+      }
+
+      // 2. Customers Subcollection
+      match /customers/{customerId} {
+        allow read, write: if isOwner(userId);
+
+        // Payments nested subcollection under customer
+        match /payments/{paymentId} {
+          allow read, write: if isOwner(userId);
+        }
+      }
+
+      // 3. Monthly Targets Subcollection
+      match /monthlyTargets/{targetId} {
+        allow read, write: if isOwner(userId);
+      }
+
+      // 4. Expenses Subcollection
+      match /expenses/{expenseId} {
+        allow read, write: if isOwner(userId);
+      }
+
+      // 5. Future Expenses Subcollection
+      match /futureExpenses/{expenseId} {
+        allow read, write: if isOwner(userId);
+      }
+
+      // 6. Tasks / Day Planner Subcollection
+      match /tasks/{taskId} {
+        allow read, write: if isOwner(userId);
+      }
+    }
+  }
+}

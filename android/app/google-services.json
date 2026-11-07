@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "493044532989",
+    "project_id": "bizora-007",
+    "storage_bucket": "bizora-007.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:493044532989:android:42ba9d8cebb4607736a094",
+        "android_client_info": {
+          "package_name": "com.bizpilot.bizpilot"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBt5YSYacUH5v6apIko1IOVUPxEVAg5E5o"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
